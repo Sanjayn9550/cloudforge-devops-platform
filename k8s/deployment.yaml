@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cloudforge-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: cloudforge
+
+  template:
+    metadata:
+      labels:
+        app: cloudforge
+
+    spec:
+      containers:
+      - name: cloudforge-container
+        image: cloudforge-app:v1
+
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 8082
